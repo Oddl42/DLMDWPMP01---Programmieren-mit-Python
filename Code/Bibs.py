@@ -4,7 +4,7 @@ Created on Tue Apr  2 07:27:48 2024
 
 @author: WillkeT
 
-import necessary libs
+    - import necessary libs
 """
 
 import numpy as np
@@ -13,3 +13,4 @@ from bokeh.plotting import figure, show
 import mysql.connector
 import sqlalchemy as db
 import sys
+import os 
