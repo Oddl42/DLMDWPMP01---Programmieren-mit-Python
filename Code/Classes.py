@@ -4,8 +4,13 @@
 ---------------------------------
 
 * Data():
-    import Data from CSV file and store to pd DataFrame
-    DataBase Handling: Connect and Write to MySql DataBase
+    - import Data from CSV file and store to pd DataFrame
+    - possibility to sort the data by x-Value
+
+* IdealFunctions
+    - GetIdealFunctions
+        -return a Dataframe with die Ideal Functions as well as the mse of the 
+        predicted function
 '''
 
 from Bibs import pd, np, sys, mysql, db
@@ -16,6 +21,7 @@ class Data():
         self.datapath = datapath
         try:
             self.df = pd.read_csv(datapath)
+            self.df.set_index('x', inplace=True)
         except FileNotFoundError:
             print(sys.exc_info())
   
@@ -27,44 +33,31 @@ class Data():
     def SortByX(self):
         return self.df.sort_values(['x'])
 
-# Class IdealFunctions
+# Class Ideal Functions child of Data
 class IdealFunctions(Data):
     
     def __init__(self, datapath):
         Data.__init__(self, datapath)
     
-    def IdealFunctionDf(self, dfTrain:pd.DataFrame):
+    def GetIdealFunctions(self, dfTrain:pd.DataFrame):
         
-        idxIdFcn = np.zeros(dfTrain.shape[1]-1 , int)
-        minVal = np.zeros(dfTrain.shape[1]-1)
-        idxId =0
-        for i in dfTrain.columns[1:]:
-            err = np.zeros(self.df.shape[1]-1)
-            iD = 0
-            for j in self.df.columns[1:]:
-                try:
-                    y_diff = (self.df[j].values - dfTrain[i].values) ** 2
-                    lsme = np.sqrt(np.sum(y_diff) / dfTrain.shape[0])
-                    err[iD] = lsme
-                    iD += 1
-                except ZeroDivisionError:
-                    print(sys.exc_info())
+        bestFitFcns = []
+        bestFitError = []
+        # Interate over all train - data
+        for y in dfTrain.columns:
+            error = pd.Series(np.zeros(self.df.shape[1]), index=self.df.columns)    # Initialize Error DF
+            for idx in dfTrain[y].index:
+                bestFitIdx = (abs((self.df.index - idx)))                           # get best Fit Index
+                bestFitData = self.df.iloc[bestFitIdx.argmin()]                     # get best Fit Index Data
+                y_diff = ((bestFitData.values - dfTrain[y][idx])**2)                # calcualte Square Error
+                error[:] = error.values + y_diff                
             
-            val = np.min(err)
-            minVal[idxId] = val
-            argIdx = np.argmin(err) + 1 # +1, da argmin idx=0 => y1
-            idxIdFcn[idxId] = argIdx 
-            idxId +=1
-            
-        idFcn = self.df['x']
-        for i in idxIdFcn:
-            idy = 'y' + str(i)
-            idFcn_y = self.df[idy]
-            idFcn = pd.concat([idFcn,idFcn_y], axis=1)
+            bestFitFcns.append(error.idxmin())
+            bestFitError.append(error[error.idxmin()] / dfTrain[y].shape[0])
 
-        return idxIdFcn, minVal, idFcn
+        return pd.DataFrame(bestFitError, index=bestFitFcns, columns=['mse']) 
 
-# Class TestData
+# Class TestData child of Data
 class TestData(Data):
     def __init__(self, datapath):
         Data.__init__(self, datapath)
@@ -105,7 +98,7 @@ class TestData(Data):
         dfFiltTab = pd.concat([self.df,d],axis=1)
         return dfFilt, dfFiltTab
 
-# Database Handling
+# Class Database Handling
 class DB_Handling:
     def __init__(self, dbName):
        self.dbName = dbName

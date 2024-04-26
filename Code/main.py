@@ -22,13 +22,19 @@ TrainData   = Data(dataPath + trainFile)
 TestData    = TestData(dataPath + testFile)
 FcnsData    = IdealFunctions(dataPath + fcnsFile)
 
+idFcns = FcnsData.GetIdealFunctions(TrainData.df)
+#tst = TestData.VaildationFunktion(FcnsData.df)
+
+
 # Store Data to Databese
 dbName  = 'prg_python_database'
-tab1    = 'tabelle_1'           # traning Daten
-tab2    = 'tabelle_2'           # ideale funktionen
+tab1    = 'tabelle_1'           # Tranings Daten
+tab2    = 'tabelle_2'           # Ideale Funktionen
 tab3    = 'tabelle_3'           # Test Daten
 
 DB = DB_Handling(dbName)
-DB.Db_StoreTable(tab1, TrainData.df)
+#DB.Db_StoreTable(tab1, TrainData.df)
+#DB.Db_StoreTable(tab2, FcnsData.df)
+#DB.Db_StoreTable(tab3, TestData.df)
 
-tst = DB.DB_GetTable(tab1)
+#tst = DB.DB_GetTable(tab1)     # for testing
