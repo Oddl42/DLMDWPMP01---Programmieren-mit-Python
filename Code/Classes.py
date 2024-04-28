@@ -4,13 +4,20 @@
 ---------------------------------
 
 * Data():
+    Input: string of File-path
     - import Data from CSV file and store to pd DataFrame
-    - possibility to sort the data by x-Value
 
-* IdealFunctions
-    - GetIdealFunctions
-        -return a Dataframe with die Ideal Functions as well as the mse of the 
-        predicted function
+* IdealFunctions()
+    Child of Data
+    - GetIdealFunctions:
+        Input: DataFrame of Trainigs-Data
+        Output: DataFrame of best fitting Ideal Funktion
+        
+* TestData()
+    Child of Data
+    - ValidateFunction:
+        Input: DataFrame of 'Ideal Functions'
+        Output: DataFrame wich maps the TestData to an Ideal-Input-Fcn
 '''
 
 from Bibs import pd, np, sys, mysql, db
@@ -29,9 +36,7 @@ class Data():
         
         for i in cols:
             self.__dict__[i] = self.df[i]
-        
-    def SortByX(self):
-        return self.df.sort_values(['x'])
+
 
 # Class Ideal Functions child of Data
 class IdealFunctions(Data):
@@ -54,14 +59,58 @@ class IdealFunctions(Data):
             
             bestFitFcns.append(error.idxmin())
             bestFitError.append(error[error.idxmin()] / dfTrain[y].shape[0])
-
-        return pd.DataFrame(bestFitError, index=bestFitFcns, columns=['mse']) 
+        
+        ErrorDF = pd.DataFrame(bestFitError, index=bestFitFcns, columns=['mse'])
+        FiltDf = self.df[ErrorDF.index]
+        return [FiltDf, ErrorDF] 
 
 # Class TestData child of Data
 class TestData(Data):
     def __init__(self, datapath):
         Data.__init__(self, datapath)
     
+    def Segmentation(self, idFcnDf:pd.DataFrame(), thereshold = np.sqrt(2)):
+        
+        data = []
+        cols = []
+        for y in self.df.columns:           # iterate over all Test-Data
+            bestFitFcn = []
+            distance = []
+            checkDouble =[]
+            for idx in self.df[y].index:    # iterate over all Points of Data 
+                bestFitIdx = (abs((idFcnDf.index - idx)))              # get best Fit Index
+                bestFitData = idFcnDf.iloc[bestFitIdx.argmin()]        # get best Fit Index Data
+                if self.df[y][idx].size == 1:
+                    y_diff = abs(bestFitData - self.df[y][idx])
+                    if y_diff[y_diff.idxmin()] < thereshold:
+                        distance.append(y_diff[y_diff.idxmin()])
+                        bestFitFcn.append(y_diff.idxmin())
+                    else:
+                        distance.append(float('nan'))
+                        bestFitFcn.append('Data out of range')
+                else:
+                    if idx not in checkDouble:
+                        checkDouble.append(idx)
+                        for i in range(self.df[y][idx].values.shape[0]):
+                            y_diff = abs(bestFitData - self.df[y][idx].values[i])
+                            if y_diff[y_diff.idxmin()] < thereshold:
+                                distance.append(y_diff[y_diff.idxmin()])
+                                bestFitFcn.append(y_diff.idxmin())
+                            else:
+                                distance.append(float('nan'))
+                                bestFitFcn.append('Data out of range')
+                                
+            data.append(np.column_stack((self.df.index.values, self.df[y].values, distance, bestFitFcn)))
+            cols.append(np.column_stack(('x ('+y + ')', y,'Delta Y ('+y + ')','Nummer Idaler Funktion ('+y + ')')))
+
+        result = pd.DataFrame()
+        for i in range(0,len(data)):
+            for j in range(0,4):
+                result[cols[i][0,:][j]] = data[i][:,j]
+
+        return result
+                
+        
     def VaildationFunktion(self, dataFrame:pd.DataFrame, threshold= np.sqrt(2)):
         nTestPt = self.df.shape[0]
         nTests = self.df.shape[1]-1

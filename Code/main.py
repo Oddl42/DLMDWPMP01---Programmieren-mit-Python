@@ -19,12 +19,14 @@ dataPath    = projectPath + r'\DataSet'
 
 # Create Data-Objects as Instances of the classes
 TrainData   = Data(dataPath + trainFile)
-TestData    = TestData(dataPath + testFile)
+TestDat    = TestData(dataPath + testFile)
 FcnsData    = IdealFunctions(dataPath + fcnsFile)
+dummyTets = TestData(dataPath + trainFile)
 
-idFcns = FcnsData.GetIdealFunctions(TrainData.df)
-#tst = TestData.VaildationFunktion(FcnsData.df)
+[idFcnsDf, mseDf] = FcnsData.GetIdealFunctions(TrainData.df)
 
+
+SegmentationCheck = TestDat.Segmentation(idFcnsDf)
 
 # Store Data to Databese
 dbName  = 'prg_python_database'
