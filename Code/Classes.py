@@ -2,33 +2,25 @@
 ---------------------------------
 ---       Classes File        ---
 ---------------------------------
-
-* Data():
-    Input: string of File-path
-    - import Data from CSV file and store to pd DataFrame
-
-* IdealFunctions()
-    Child of Data
-    - GetIdealFunctions:
-        Input: DataFrame of Trainigs-Data
-        Output: DataFrame of best fitting Ideal Funktion
-        
-* TestData()
-    Child of Data
-    - ValidateFunction:
-        Input: DataFrame of 'Ideal Functions'
-        Output: DataFrame wich maps the TestData to an Ideal-Input-Fcn
 '''
 
-from Bibs import pd, np, sys, mysql, db
+from Bibs import pd, np, sys, mysql, db, unittest
 
 # Class Data
 class Data():
+    """
+   This class is used to import data from a CSV file and store it in a pandas DataFrame.
+   """
     def __init__(self, datapath):
+        """
+        Initialize the Data class with the path to the data file.
+        Parameters:
+        datapath (str): The path to the data file.
+        """
         self.datapath = datapath
         try:
-            self.df = pd.read_csv(datapath)
-            self.df.set_index('x', inplace=True)
+            self.df = pd.read_csv(datapath)             # write csv Data into DataFrame
+            #self.df.set_index('x', inplace=True)
         except FileNotFoundError:
             print(sys.exc_info())
   
@@ -38,117 +30,100 @@ class Data():
             self.__dict__[i] = self.df[i]
 
 
-# Class Ideal Functions child of Data
 class IdealFunctions(Data):
-    
+    """
+    This class is a child of the Data class. It is used to get the best fitting functions from a DataFrame.
+    """
     def __init__(self, datapath):
         Data.__init__(self, datapath)
     
-    def GetIdealFunctions(self, dfTrain:pd.DataFrame):
+    def GetIdealFunctions(self, dfTrain:pd.DataFrame):      # Get the Best-Fit-Function from a Intput DataFrame
+        """
+        Get the best fit function from an input DataFrame (Training Data).
         
-        bestFitFcns = []
-        bestFitError = []
-        # Interate over all train - data
-        for y in dfTrain.columns:
-            error = pd.Series(np.zeros(self.df.shape[1]), index=self.df.columns)    # Initialize Error DF
-            for idx in dfTrain[y].index:
-                bestFitIdx = (abs((self.df.index - idx)))                           # get best Fit Index
-                bestFitData = self.df.iloc[bestFitIdx.argmin()]                     # get best Fit Index Data
-                y_diff = ((bestFitData.values - dfTrain[y][idx])**2)                # calcualte Square Error
-                error[:] = error.values + y_diff                
+        Parameters:
+        dfTrain (pd.DataFrame): The input Traing-DataFrame.
+        
+        Returns:
+        list: A DataFrame of the best fit functions, and a DataFrame of the FunctionNumber with the MSE
+        """
+        try:
+            bestFitFcns = []
+            bestFitError = []
+            # Interate over all train - data
+            for y in dfTrain.columns[1:]:
+                error = pd.Series(np.zeros(self.df.shape[1]-1), index=self.df.columns[1:])    # Initialize Error DF
+                for idx, row in dfTrain[['x',y]].iterrows():
+                    bestFitIdx = (abs((self.df['x'] - row['x'])))                   # get best Fit X- Value
+                    bestFitData = self.df.iloc[bestFitIdx.argmin()]                 # get Y-Values to best Fit X-Value
+                    y_diff = ((bestFitData.drop('x').values - row[y])**2)           # calc Square Error (without X)
+                    error[:] = error.values + y_diff                
+                
+                bestFitFcns.append(error.idxmin())                                  # get best fit function
+                try:
+                    bestFitError.append(error[error.idxmin()] / dfTrain[y].shape[0])    # calc mean square error 
+                except ZeroDivisionError():
+                    print(ZeroDivisionError())
             
-            bestFitFcns.append(error.idxmin())
-            bestFitError.append(error[error.idxmin()] / dfTrain[y].shape[0])
-        
-        ErrorDF = pd.DataFrame(bestFitError, index=bestFitFcns, columns=['mse'])
-        FiltDf = self.df[ErrorDF.index]
-        return [FiltDf, ErrorDF] 
-
+            ErrorDF = pd.DataFrame(bestFitError, index=bestFitFcns, columns=['mse'])
+            FiltDf = pd.concat([self.df['x'],self.df[ErrorDF.index]],axis=1)
+            return [FiltDf, ErrorDF] 
+        except:
+            print(Errors().my_message1)
+            
 # Class TestData child of Data
 class TestData(Data):
+    """
+    This class is a child of the Data class. It is used to segment the test data.
+    """
     def __init__(self, datapath):
         Data.__init__(self, datapath)
     
-    def Segmentation(self, idFcnDf:pd.DataFrame(), thereshold = np.sqrt(2)):
+     # Function:   
+    def Segmentation(self, idFcnDf:pd.DataFrame(), threshold = np.sqrt(2)):
+        """
+        Segment the test data based on the ideal functions and a threshold .
         
-        data = []
-        cols = []
-        for y in self.df.columns:           # iterate over all Test-Data
-            bestFitFcn = []
-            distance = []
-            checkDouble =[]
-            for idx in self.df[y].index:    # iterate over all Points of Data 
-                bestFitIdx = (abs((idFcnDf.index - idx)))              # get best Fit Index
-                bestFitData = idFcnDf.iloc[bestFitIdx.argmin()]        # get best Fit Index Data
-                if self.df[y][idx].size == 1:
-                    y_diff = abs(bestFitData - self.df[y][idx])
-                    if y_diff[y_diff.idxmin()] < thereshold:
-                        distance.append(y_diff[y_diff.idxmin()])
-                        bestFitFcn.append(y_diff.idxmin())
-                    else:
-                        distance.append(float('nan'))
-                        bestFitFcn.append('Data out of range')
+        Parameters:
+        idFcnDf (pd.DataFrame): The DataFrame of ideal functions.
+        threshold (float): (optional) The threshold for segmentation. Default is sqrt(2).
+        
+        Returns:
+        DataFrame: The segmented test data => assigns the test data to an ideal function, 
+            if distance (Test - Fcn) < threshold
+        """
+        try:
+            result      = self.df.sort_values(['x'])
+            minDist     = []
+            bestFitFcn  = []
+            for idx, row in result.iterrows():
+                distance = []
+                for y in idFcnDf.columns[1:]:
+                    bestFitIdx = (idFcnDf['x'] - row['x'])**2                       # get squared X- Error
+                    bestFitData = (idFcnDf[y] - row['y'])**2                        # get squared Y- Error
+                    distance.append(np.sqrt(bestFitIdx + bestFitData).min())        # get squared Error / Distance
+                if min(distance) < threshold:                   
+                    minDist.append(min(distance))                                   # get min squared Error 
+                    bestFitFcn.append(idFcnDf.columns[distance.index(min(distance)) + 1])   # get best Fit Function
                 else:
-                    if idx not in checkDouble:
-                        checkDouble.append(idx)
-                        for i in range(self.df[y][idx].values.shape[0]):
-                            y_diff = abs(bestFitData - self.df[y][idx].values[i])
-                            if y_diff[y_diff.idxmin()] < thereshold:
-                                distance.append(y_diff[y_diff.idxmin()])
-                                bestFitFcn.append(y_diff.idxmin())
-                            else:
-                                distance.append(float('nan'))
-                                bestFitFcn.append('Data out of range')
-                                
-            data.append(np.column_stack((self.df.index.values, self.df[y].values, distance, bestFitFcn)))
-            cols.append(np.column_stack(('x ('+y + ')', y,'Delta Y ('+y + ')','Nummer Idaler Funktion ('+y + ')')))
-
-        result = pd.DataFrame()
-        for i in range(0,len(data)):
-            for j in range(0,4):
-                result[cols[i][0,:][j]] = data[i][:,j]
-
-        return result
-                
+                    minDist.append(min(distance))
+                    bestFitFcn.append('Data out of range')
         
-    def VaildationFunktion(self, dataFrame:pd.DataFrame, threshold= np.sqrt(2)):
-        nTestPt = self.df.shape[0]
-        nTests = self.df.shape[1]-1
-        nFcn = dataFrame.shape[1]- 1
-        nFcnPt = dataFrame.shape[0]
-        check = np.zeros((nTestPt, nFcn))
-        y_diff = []
-        y_FcnId = []
-        yFilt = []
-        xFilt = []
-        cols = self.df.columns
-        
-        for n in cols[1:]:
-            for i in range(0, nTestPt):
-                iX = np.abs(dataFrame['x'].values - self.df[cols[0]].values[i])
-                idX = np.argmin(iX)
-                dummy = np.zeros((nFcn,1))
-                for j in range(0, nFcn):
-                    y = dataFrame.columns[j+1]
-                    yDiff = np.abs(dataFrame[y].values[idX] - self.df[n].values[i])
-                    dummy[j] = yDiff
-                    if yDiff < threshold:
-                        check[i,j] = 1
-                        
-                if check[i,0:].any():
-                    xFilt.append(self.df[cols[0]].values[i])
-                    yFilt.append(self.df[n].values[i])
-                
-                y_diff.append(np.min(dummy))
-                y_FcnId.append(dataFrame.columns[np.argmin(dummy)+1])
-        
-        dfFilt = pd.DataFrame({cols[0]:xFilt, cols[1]:yFilt})
-        d = pd.DataFrame({'delta_Y': y_diff[0:], 'Ideal Fcn Index':y_FcnId})
-        dfFiltTab = pd.concat([self.df,d],axis=1)
-        return dfFilt, dfFiltTab
-
+            result['Delta'] = minDist
+            result['Nummer Ideale Funktion'] = bestFitFcn
+            return result        
+        except:
+            print(Errors().my_message2)
+            
+    
 # Class Database Handling
 class DB_Handling:
+    '''
+    DB Handling:
+        Connect to a Database
+        Store Data (Tabel) to a Database
+        Get Data (Tabel) from a Database
+    '''
     def __init__(self, dbName):
        self.dbName = dbName
        self.databasePath = 'mysql+mysqlconnector://TestUser:MyT3st_SQL@localhost/' + self.dbName
@@ -200,10 +175,19 @@ class DB_Handling:
             print(DBErrorHandling().my_messageConError)
             
         return tableDF
-        
-        
+
+class Errors(Exception):
+    '''
+    Error of 
+    '''
+    def __init__(self):
+        self.my_message1 = 'Best Fit Functions Error'
+        self.my_message2 = 'Segmentation Error'                
 
 class DBErrorHandling(Exception):
+    '''
+    Error of DbHandling
+    '''
     def __init__(self, dbName, dbTable):
         my_message1 = 'Datenbank ' + dbName + ' existier nicht!'
         self.my_message1 = my_message1
