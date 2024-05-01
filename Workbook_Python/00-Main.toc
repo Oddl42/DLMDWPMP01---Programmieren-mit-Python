@@ -1,0 +1,23 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {I}List of Figures}{III}{chapter.1}%
+\contentsline {chapter}{\numberline {II}List of Tables}{IV}{chapter.2}%
+\contentsline {chapter}{\numberline {III}Abbreviations}{V}{chapter.3}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Objektorientierte Programmierung}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Klassen}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Methoden und Vererbung}{3}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Python Bibliotheken}{4}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Numpy}{4}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Pandas}{4}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Bokeh}{5}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Datenbanken}{7}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Latex}{8}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Tools}{8}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Literature References}{8}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Pictures}{8}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Tables}{9}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Listes}{9}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Formulæ}{9}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Tools and Code}{9}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Citation examples}{10}{section.5.8}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

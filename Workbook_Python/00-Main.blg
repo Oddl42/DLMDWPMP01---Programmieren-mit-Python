@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: 00-Main.aux
+Reallocating 'name_of_file' (item size: 1) to 18 items.
+A level-1 auxiliary file: 001-Titlepage.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: 005-Abbreviations.aux
+Reallocating 'name_of_file' (item size: 1) to 14 items.
+A level-1 auxiliary file: 010-Intro.aux
+Reallocating 'name_of_file' (item size: 1) to 41 items.
+A level-1 auxiliary file: 020-Objektorientierte_Programmierung.aux
+Reallocating 'name_of_file' (item size: 1) to 28 items.
+A level-1 auxiliary file: 021-Python_Bibliotheken.aux
+Reallocating 'name_of_file' (item size: 1) to 26 items.
+A level-1 auxiliary file: 022-Database_Handling.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: 090-Body.aux
+Reallocating 'name_of_file' (item size: 1) to 5 items.
+The style file: iubh.bst
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+Reallocating 'name_of_file' (item size: 1) to 15 items.
+A level-1 auxiliary file: 070-Pledge.aux
+Database file #1: biblio.bib
+You've used 19 entries,
+            2775 wiz_defined-function locations,
+            695 strings with 7124 characters,
+and the built_in function-call counts, 8760 in all, are:
+= -- 775
+> -- 239
+< -- 19
++ -- 91
+- -- 73
+* -- 624
+:= -- 1403
+add.period$ -- 40
+call.type$ -- 19
+change.case$ -- 110
+chr.to.int$ -- 20
+cite$ -- 19
+duplicate$ -- 700
+empty$ -- 756
+format.name$ -- 105
+if$ -- 1826
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 130
+newline$ -- 61
+num.names$ -- 76
+pop$ -- 230
+preamble$ -- 1
+purify$ -- 100
+quote$ -- 0
+skip$ -- 308
+stack$ -- 0
+substring$ -- 312
+swap$ -- 314
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 135
+warning$ -- 0
+while$ -- 61
+width$ -- 0
+write$ -- 210

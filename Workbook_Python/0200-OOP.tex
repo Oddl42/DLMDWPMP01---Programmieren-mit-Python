@@ -1,0 +1,37 @@
+\chapter{Objektorientierte Programmierung}
+
+Objektorientierte Programmierung (OOP) ist ein Programmierparadigma, das auf dem Konzept von "Objekten" basiert, die Datenstrukturen enthalten und Verhaltensweisen (Methoden) definieren. Diese Objekte sind Instanzen von Klassen, die als Blaupausen für Objekte dienen. Eine der Hauptfunktionen der OOP ist die Vererbung, ein Mechanismus, der es ermöglicht, Code zu teilen und zu wiederverwenden. In diesem Bericht werden wir diese Konzepte anhand eines Beispiels aus der Datenverarbeitung und Datenbankverwaltung erläutern.
+
+\section{Klassen}
+Eine Klasse ist eine Vorlage oder ein Bauplan für die Erstellung von Objekten. Sie definiert die Attribute und Methoden, die ein Objekt haben wird. Ein Attribut ist eine Eigenschaft oder ein Merkmal, das ein Objekt hat, während eine Methode eine Funktion ist, die ein Objekt ausführen kann.
+
+Die \textit{\_\_init\_\_} Methode in Python ist eine spezielle Methode, die automatisch aufgerufen wird, wenn eine Instanz (ein Objekt) einer Klasse erstellt wird. Sie wird verwendet, um die Attribute der Klasse zu initialisieren. Die \textit{self} Variable repräsentiert die Instanz der Klasse und wird verwendet, um auf die Attribute und Methoden der Klasse zuzugreifen.
+
+In unserem Beispiel haben wir eine Klasse Data, die eine Methode \textit{\_\_init\_\_} hat. Diese Methode nimmt einen Parameter datapath entgegen und versucht, eine CSV-Datei von diesem Pfad zu lesen und in ein DataFrame zu konvertieren. Wenn die Datei nicht gefunden wird, wird eine Fehlermeldung ausgegeben. Die Methode \textit{\_\_init\_\_} initialisiert auch andere Attribute der Klasse, wie df und \textit{dfSortByX}.\\
+
+\begin{lstlisting}[caption={class Data}, label={lst:class data}]
+class Data():
+  def __init__(self, datapath):
+    try:
+      self.datapath = datapath
+      self.df = pd.read_csv(datapath)
+    except FileNotFoundError:
+      print(sys.exc_info())
+    cols = self.df.columns
+    for i in cols:
+      self.__dict__[i] = self.df[i]
+    self.dfSortByX = self.df.sort_values(['x'])
+\end{lstlisting}
+
+\section{Vererbung}
+Vererbung ist ein Prinzip der OOP, das es ermöglicht, eine neue Klasse zu erstellen, die die Attribute und Methoden einer bestehenden Klasse erbt. Die neue Klasse wird als "Unterklasse" oder "abgeleitete Klasse" bezeichnet, während die bestehende Klasse als "Oberklasse" oder "Basis-Klasse" bezeichnet wird.
+
+In unserem Beispiel haben wir zwei Klassen \textit{IdealFunctions} und \textit{TestData}, die von der Klasse Data erben. Sie erben alle Attribute und Methoden von Data und definieren zusätzliche Methoden.
+
+Die \textit{self} Variable wird verwendet, um auf die Attribute und Methoden der Klasse zuzugreifen, die von der Oberklasse geerbt wurden. Zum Beispiel, in der \textit{\_\_init\_\_} Methode der \textit{IdealFunctions} Klasse, rufen wir die \textit{\_\_init\_\_} Methode der Data Klasse auf, um die Attribute der Data Klasse zu initialisieren.
+
+\begin{lstlisting}[caption={class Data}, label={lst:class IdealFcns}]
+class IdealFunctions(Data):
+  def __init__(self, datapath):
+    Data.__init__(self, datapath)
+\end{lstlisting}

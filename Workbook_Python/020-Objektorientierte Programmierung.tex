@@ -1,0 +1,59 @@
+\chapter{Objektorientierte Programmierung}
+
+Die objektorientierte Programmierung hat seine Anfänge in den 1970er Jahren und setzte sich in den 1990er Jahren mit der Einführung von Java durch, \cite{Steyer:2018}. Sie unterstützt komplexe Softwareentwicklung dabei, Software einfacher erweiterbar, besser testbar und besser wartbar zu machen, \cite{Lahres:2021}. Als wesentliche Grundelemente der OOP gelten, \cite{Lahres:2021}
+\begin{itemize}
+	\itemsep0pt
+	\item Unterstützung von \textbf{Vererbungsmechanismen}: \\
+	Attribute, Methoden und Ereignisse werden von der Basisklasse auf die abgeleitete Klasse übertragen. Dies ermöglicht die Wiederverwendung von Code und die Erweiterung der Funktionalität.
+	\item Unterstützung von \textbf{Datenkapselung}: \\
+	Ist ein Konzept, Daten und Informationen vor dem direkten Zugriff von außen zu verbergen. Es ermöglicht die Kontrolle über den Zugriff auf die internen Datenstrukturen eines Objekts und erfolgt über definierte Schnittstellen.
+	\item Unterstützung von \textbf{Polymorphie}: \\
+	Ermöglicht, dass ein Bezeichner abhängig von seiner Verwendung Objekte unterschiedlichen Datentyps annimmt. Dies bedeutet, dass eine einzige Schnittstelle oder Methode verschiedene Implementierungen haben kann.
+\end{itemize}
+
+Weitere wichtige Kernkonzepte der OOP sind, \cite{Steyer:2018}:
+\begin{itemize}
+	\itemsep0pt
+	\item \textbf{Klassen} dienen als Baupläne für Objekte. In der umgekehrten Sichtweise „klassifizieren“ sie alle Gemeinsamkeiten, die verwandte Objekte auszeichnen. Man nennt sie auch Objekttypen oder kurz Typen.
+	\item \textbf{Objekte} dienen als Abstraktion eines realen Gegenstands oder Konzepts mit einem spezifischen Zustand und einem spezifischen Verhalten. Man nennt sie Instanzen eine Klasse.
+	\item Alle Bestandteile, die direkt zu einem Objekt gehören, nennt man \textbf{Instanzelemente}. Der Name resultiert daraus, dass wie gesagt „Instanz“ oft als Synonym für „Objekt“ genommen wird. Man bezeichnet diese Bestandteile oft auch als „nicht-statisch“ oder „dynamisch“, da sie für jede Instanz einer Klasse dynamisch erstellt werden.
+	\item Alle Bestandteile, die nicht direkt zu einem spezifischen Objekt, sondern einer Klasse gehören, nennt man \textbf{Klassenelemente} oder auch statische Elemente.
+	\item \textbf{Attribute} sind eine Beschreibung objekt- und klassenbezogener Daten. Oft wird auch der Bezeichner „Eigenschaft“ für „Attribut“ verwendet.
+	\item \textbf{Methoden} sind die Beschreibung objekt- und klassenbezogener Funktionalität.
+	\item \textbf{Schnittstellen} implementieren einen Mechanismus zur Strukturierung von Klassenbeziehungen.
+\end{itemize}
+
+Das Konzept der Klassen bietet eine Reihe von Vorteilen und stellen die Baupläne der Grundbausteine eines Software-Programms dar.
+In Python wird eine neue Klasse durch das Schlüssewort \textit{class}, einem Bezeichner, einem Doppelpunkt sowie nachfolgend Anweisungen definiert, \cite{Steyer:2018}.
+Es werden drei Klassen definiert:
+\begin{lstlisting}
+	class Data():
+		def __init__(self, datapath):
+			...
+\end{lstlisting}
+\begin{lstlisting}
+	class IdealFunctions(Data):
+		def __init__(self, datapath):
+			Data.__init__(self, datapath)
+		def IdealFunctionDf(self, dataFrame:pd.DataFrame):
+			...
+\end{lstlisting}
+\begin{lstlisting}
+	class TestData(Data):
+		def __init__(self, datapath):
+			Data.__init__(self, datapath)
+		def VaildationFunktion(self, dataFrame:pd.DataFrame, 
+			threshold= np.sqrt(2)):
+			...
+\end{lstlisting}
+
+Die Klassen \textit{IdealFunctions} und \textit{TestData} erben von der \textit{Data}-Klasse, was ein Beispiel für die Vererbung in Python ist und dadurch gekennzeichnet ist, dass die Basisklasse in den runden Klammern angegeben wird, \cite{Häberlein:2024}. \\
+
+Die \textit{Data}-Klasse ist die Basisklasse welche eine Methode namens \textit{\_\_init\_\_} besitzt und als Konstruktor dient. Diese Methode wird bei der Initialisierung ausgeführt, wenn ein Objekt aus dieser Klasse erzeugt wird. Der Konstruktor nimmt einen Parameter \textit{datapath}, der den Pfad zu einer CSV-Datei darstellt. Die Methode versucht, die CSV-Datei zu lesen und speichert das resultierende DataFrame in der Instanzvariable \textit{self.df}. Darüber hinaus werden die Spalten des DataFrame als Attribute des Objekts gespeichert.\\
+
+Die \textit{IdealFunctions}-Klasse erbt von der \textit{Data}-Klasse. Dies bedeutet, dass sie alle Attribute und Methoden der \textit{Data}-Klasse erbt und zusätzliche Attribute und Methoden hinzufügen kann. Hier wird die Methode \textit{\textit{IdealFunctionDf}} der textit{IdealFunctions}-Klasse hinzu gefügt. Diese Methode nimmt ein DataFrame als Parameter und vergleicht diese mit einer Schar unterschiedlicher Funktion. Ziel ist es, Datenpunkte eines DataFarmes einer Funktion zu zuordnen, welche den kleinsten quadratischen Fehler besitzt.\\
+
+Die \textit{TestData}-Klasse erbt ebenfalls von der \textit{Data}-Klasse und fügt die Methode \textit{VaildationFunktion} hinzu. Diese Methode nimmt ein DataFrame und einen Schwellenwert als Parameter. Diese filtert Datenpunkte aus dem DataFrame, welche den Schwellwert von $\sqrt{2}$ überschreiten.
+
+
+

@@ -1,0 +1,60 @@
+\chapter{Objektorientierte Programmierung}\label{Objektorientierte Programmierung}
+
+Die objektorientierte Programmierung hat seine Anfänge in den 1970er Jahren und setzte sich in den 1990er Jahren mit der Einführung von Java durch, \cite{Steyer:2018}. Sie unterstützt komplexe Softwareentwicklung dabei, Software einfacher erweiterbar, besser testbar und besser wartbar zu machen, \cite{Lahres:2021}. Als wesentliche Grundelemente der OOP gelten, \cite{Lahres:2021}
+
+
+\begin{itemize}
+	\itemsep0pt
+	\item Unterstützung von \textbf{Vererbungsmechanismen}: \\
+	Attribute, Methoden und Ereignisse werden von der Basisklasse auf die abgeleitete Klasse übertragen. Dies ermöglicht die Wiederverwendung von Code und die Erweiterung der Funktionalität.
+	\item Unterstützung von \textbf{Datenkapselung}: \\
+	Ist ein Konzept, Daten und Informationen vor dem direkten Zugriff von außen zu verbergen. Es ermöglicht die Kontrolle über den Zugriff auf die internen Datenstrukturen eines Objekts und erfolgt über definierte Schnittstellen.
+	\item Unterstützung von \textbf{Polymorphie}: \\
+	Ermöglicht, dass ein Bezeichner abhängig von seiner Verwendung Objekte unterschiedlichen Datentyps annimmt. Dies bedeutet, dass eine einzige Schnittstelle oder Methode verschiedene Implementierungen haben kann.
+\end{itemize}
+
+Objektorientierte Programmierung (OOP) ist somit ein Programmierparadigma, das auf dem Konzept von "Objekten" basiert, die Datenstrukturen enthalten und Verhaltensweisen (Methoden) definieren. Diese Objekte sind Instanzen von Klassen, die als Blaupausen für Objekte dienen. 
+
+\section{Klassen}
+Eine Klasse ist eine Vorlage oder ein Bauplan für die Erstellung von Objekten. Sie definiert die Attribute und Methoden, die ein Objekt haben wird. Ein Attribut ist eine Eigenschaft oder ein Merkmal, das ein Objekt hat, während eine Methode eine Funktion ist, die ein Objekt ausführen kann, \cite{Steyer:2018}. Diese werden durch das Schlüsselwort \textit{class} definiert. 
+
+\begin{lstlisting}[caption={class Data}, captionpos=b, label={lst:class data}]
+class Data():
+  def __init__(self, datapath):
+    try:
+      self.datapath = datapath
+      self.df = pd.read_csv(datapath)
+    except FileNotFoundError:
+      print(sys.exc_info())
+    cols = self.df.columns
+    for i in cols:
+      self.__dict__[i] = self.df[i]
+    self.dfSortByX = self.df.sort_values(['x'])
+\end{lstlisting}
+
+\section{Methoden und Vererbung}
+Die Klasse \textit{Data} hat eine Methode \textit{\_\_init\_\_}, welche den Parameter \textit{datapath} entgegen nimmt und versucht, eine CSV-Datei von diesem Pfad zu lesen und in ein DataFrame zu konvertieren. Wenn die Datei nicht gefunden wird, wird eine Fehlermeldung ausgegeben. Die Methode \textit{\_\_init\_\_} initialisiert auch andere Attribute der Klasse, wie df und \textit{dfSortByX}.
+
+Allgemein ist die \textit{\_\_init\_\_} Methode in Python ist eine spezielle Methode, die automatisch aufgerufen wird, wenn eine Instanz (ein Objekt) einer Klasse erstellt wird. Sie wird verwendet, um die Attribute der Klasse zu initialisieren. Die \textit{self} Variable repräsentiert die Instanz der Klasse und wird verwendet, um auf die Attribute und Methoden der Klasse zuzugreifen, \cite{Häberlein:2024}. \\
+
+Vererbung ist ein Prinzip der OOP, das es ermöglicht, eine neue Klasse zu erstellen, die die Attribute und Methoden einer bestehenden Klasse erbt. Die neue Klasse wird als "Unterklasse" oder "abgeleitete Klasse" bezeichnet, während die bestehende Klasse als "Oberklasse" oder "Basis-Klasse" bezeichnet wird, \cite{Steyer:2018}.
+Die Klasse \textit{IdealFunctions} erbt von Data und fügt die Methode \textit{IdealFunctionDf} hinzu, die eine ideale Funktion basierend auf einem Trainingsdatensatz berechnet. Diese Methode berechnet die kleinsten Fehler zwischen den Trainingsdaten und den Daten der Basisklasse und gibt die Indizes der idealen Funktionen zurück.
+
+\begin{lstlisting}[caption={class IdealFunctions}, captionpos=b, label={lst:class IdealFcns}]
+class IdealFunctions(Data):
+  def __init__(self, datapath):
+    Data.__init__(self, datapath)
+  def IdealFunctionDf(self, dfTrain:pd.DataFrame):
+    ...
+\end{lstlisting}
+
+Die Klasse \textit{TestData} erbt ebenfalls von Data und enthält die Methode \textit{VaildationFunktion}, die eine Validierungsfunktion für einen gegebenen Datensatz implementiert. Diese Methode filtert Datenpunkte basierend auf einem Schwellenwert \textit{threshold}, welche mit $\sqrt{2}$ initialisiert wird, und gibt ein gefiltertes Datenframe sowie eine tabellarische Darstellung zurück.
+
+\begin{lstlisting}[caption={class TestData}, captionpos=b, label={lst:class IdealFcns}]
+class TestData(Data):
+  def __init__(self, datapath):
+    Data.__init__(self, datapath)
+  def VaildationFunktion(self, dataFrame:pd.DataFrame, threshold= np.sqrt(2))
+    ...
+\end{lstlisting}
+
