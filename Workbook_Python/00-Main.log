@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.3.9)  1 MAY 2024 17:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2024.3.9)  1 MAY 2024 17:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -691,7 +691,7 @@ File: ot1txr.fd 2000/12/15 v3.1
 LaTeX Warning: Label `lst:class IdealFcns' multiply defined.
 
 ) (021-Python_Bibliotheken.aux) (022-Database_Handling.aux) (023-Git.aux)
-(090-Body.aux) (070-Pledge.aux))
+(024-Zusammenfassung.aux) (070-Pledge.aux))
 \openout1 = `00-Main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 72.
@@ -1127,7 +1127,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
  []
 
-<pics/bokeh_plot.png, id=215, 501.875pt x 501.875pt>
+<pics/bokeh_plot.png, id=192, 501.875pt x 501.875pt>
 File: pics/bokeh_plot.png Graphic file (type png)
 <use pics/bokeh_plot.png>
 Package pdftex.def Info: pics/bokeh_plot.png  used on input line 59.
@@ -1152,7 +1152,7 @@ Overfull \hbox (49.57222pt too wide) in paragraph at lines 21--22
 
  (023-Git.tex
 chapter 5.
-<pics/Git.png, id=267, 592.2125pt x 248.93pt>
+<pics/Git.png, id=244, 592.2125pt x 248.93pt>
 File: pics/Git.png Graphic file (type png)
 <use pics/Git.png>
 Package pdftex.def Info: pics/Git.png  used on input line 31.
@@ -1163,12 +1163,39 @@ Package pdftex.def Info: pics/Git.png  used on input line 31.
 
 
  <./pics/Git.png>]
-\openout2 = `090-Body.aux'.
+\openout2 = `024-Zusammenfassung.aux'.
 
- (090-Body.tex
+ (024-Zusammenfassung.tex
 chapter 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+
+ []
+
+) [9
+
+
+
+
+] (00-Main.bbl
 LaTeX Font Info:    Trying to load font information for OT1+txtt on input line 
-5.
+6.
+
 (C:\Users\timwi\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\ot1txtt.fd
 File: ot1txtt.fd 2000/12/15 v3.1
 )
@@ -1176,26 +1203,12 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `txtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<pics/spiral.pdf, id=284, 88.59094pt x 80.27197pt>
-File: pics/spiral.pdf Graphic file (type pdf)
-<use pics/spiral.pdf>
-Package pdftex.def Info: pics/spiral.pdf  used on input line 22.
-(pdftex.def)             Requested size: 227.62204pt x 206.27573pt.
-
-Underfull \hbox (badness 1286) in paragraph at lines 34--35
-[]\OT1/txr/m/n/10 (+20) mecatronics spe-cial-
- []
-
-[9
+)
+[10
 
 
 
-
- <./pics/spiral.pdf>] [10]) [11] (00-Main.bbl [12
-
-
-
-]) [13]
+]
 \openout2 = `070-Pledge.aux'.
 
  (070-Pledge.tex
@@ -1203,13 +1216,14 @@ File: pics/logo.pdf Graphic file (type pdf)
 <use pics/logo.pdf>
 Package pdftex.def Info: pics/logo.pdf  used on input line 5.
 (pdftex.def)             Requested size: 96.19437pt x 32.00908pt.
-)
-[14
+) [11
 
 
-] (00-Main.aux (001-Titlepage.aux) (005-Abbreviations.aux) (010-Intro.aux)
+] (00-Main.aux (001-Titlepage.aux)
+(005-Abbreviations.aux) (010-Intro.aux)
 (020-Objektorientierte_Programmierung.aux) (021-Python_Bibliotheken.aux)
-(022-Database_Handling.aux) (023-Git.aux) (090-Body.aux) (070-Pledge.aux))
+(022-Database_Handling.aux) (023-Git.aux) (024-Zusammenfassung.aux)
+(070-Pledge.aux))
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1225,28 +1239,26 @@ Package rerunfilecheck Info: File `00-Main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23007 strings out of 475248
- 399061 string characters out of 5757814
+ 22904 strings out of 475248
+ 397981 string characters out of 5757814
  1937785 words of memory out of 5000000
- 43565 multiletter control sequences out of 15000+600000
- 619648 words of font info for 409 fonts, out of 8000000 for 9000
+ 43523 multiletter control sequences out of 15000+600000
+ 614320 words of font info for 383 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,12n,107p,10904b,2043s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtcx
 r.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/
 rtxb.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfon
-ts/rtxi.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/public/tx
-fonts/rtxr.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/public
-/txfonts/txex.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/txfonts/txsy.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/txfonts/txtt.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/urw/helvetic/uhvb8a.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/
-type1/urw/times/utmb8a.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/
-type1/urw/times/utmr8a.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/
-type1/urw/times/utmri8a.pfb>
-Output written on 00-Main.pdf (19 pages, 319976 bytes).
+ts/rtxr.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/public/tx
+fonts/txsy.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/txfonts/txtt.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/urw
+/helvetic/uhvb8a.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/
+urw/times/utmb8a.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/
+urw/times/utmr8a.pfb><C:/Users/timwi/AppData/Local/Programs/MiKTeX/fonts/type1/
+urw/times/utmri8a.pfb>
+Output written on 00-Main.pdf (16 pages, 293164 bytes).
 PDF statistics:
- 495 PDF objects out of 1000 (max. 8388607)
- 139 named destinations out of 1000 (max. 500000)
- 94917 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 382 PDF objects out of 1000 (max. 8388607)
+ 115 named destinations out of 1000 (max. 500000)
+ 86656 words of extra memory for PDF output out of 89155 (max. 10000000)
 

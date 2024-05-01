@@ -12,13 +12,5 @@
 \contentsline {section}{\numberline {3.3}Bokeh}{5}{section.3.3}%
 \contentsline {chapter}{\numberline {4}Datenbanken}{7}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Versionskontrolle mit Git}{8}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Latex}{9}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Tools}{9}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Literature References}{9}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Pictures}{9}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Tables}{10}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Listes}{10}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Formulæ}{10}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Tools and Code}{10}{section.6.7}%
-\contentsline {section}{\numberline {6.8}Citation examples}{11}{section.6.8}%
+\contentsline {chapter}{\numberline {6}Zusammenfassung}{9}{chapter.6}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

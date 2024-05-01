@@ -1,28 +1,15 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{14}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Bokeh(2024)}]{Boekeh}
 \textbf{Bokeh} (\textbf{2024}): \emph{{Bokeh documentation}}. (URL:
   \url{https://docs.bokeh.org/en/latest/} [last access: \germandate\today]).
 
-\bibitem[{Dueck(2016)}]{DueckKo:2016}
-\textbf{Dueck, G.} (\textbf{2016}): \emph{{Zwischen industralisierendem
-  Downgrade und notwendigem Upgrade/Empowerment}}. (auf dem AKAC-Kongress).
-
-\bibitem[{Gage(2018)}]{Gage:18}
-\textbf{Gage, J.} (\textbf{2018}): \emph{{Introduction to Microservices}}.
-  (URL: \url{https://blog.algorithmia.com/introduction-to-microservices/} [last
-  access: 02.06.2019]).
-
 \bibitem[{{G\'{e}ron Aur\'{e}lien}(2022)}]{Geron:2022}
 \textbf{{G\'{e}ron Aur\'{e}lien}} (\textbf{2022}): \emph{{Praxiseinstieg
   Machine Learning mit Scikit-Learn, Keras und TensorFlow : Konzepte, Tools und
   Techniken für intelligente Systeme}}. 2. Auflage, O'Reilly Media,
   Sebastopol, Calif.
-
-\bibitem[{Tylor(2023)}]{Taylor:2023}
-\textbf{Tylor, A. G.} (\textbf{2023}): \emph{{SQL All-In-One for Dummies}}. 3.
-  Auflage, John Wiley and Sons, Incorporated.
 
 \bibitem[{Häberlein(2024)}]{Häberlein:2024}
 \textbf{Häberlein, T.} (\textbf{2024}): \emph{{Programmierung mit Python: Eine
@@ -33,10 +20,6 @@
 \textbf{Lahres, B./Rayman, G./ Strich, S.} (\textbf{2021}):
   \emph{{Objektorientierte Programmierung: Das umfassende Handbuch}}. 5.
   Auflage, Reihnwerk Verlag, Bonn.
-
-\bibitem[{Liebel(2019)}]{con:infra}
-\textbf{Liebel, O.} (\textbf{2019}): \emph{{Skalierbare
-  Container-Infrastrukturen}}. 2. Auflage, Rheinwerk Verlag, Bonn.
 
 \bibitem[{Loeliger(2012)}]{Loeliger:2012}
 \textbf{Loeliger, J.} (\textbf{2012}): \emph{{Version control with Git}}. 2.
@@ -51,11 +34,6 @@
 \textbf{Müller, A./ Guido, S.} (\textbf{2017}): \emph{{Einführung in Machine
   Learning mit Python : Praxiswissen Data Science}}. 1. Auflage, O'Reilly
   Media, Sebastopol, Calif.
-
-\bibitem[{Müller / Mustermann(2019)}]{sammelband}
-\textbf{Müller, P./ Mustermann, M.} (\textbf{2019}): \emph{{Artikel in
-  Sammelband}}. {(Hrsg.: Sammelband für IUBH.)}. 2. Auflage, Rheinwerk Verlag,
-  Bonn. {S. 9--22}.
 
 \bibitem[{Nelli(2023)}]{Nelli:2023}
 \textbf{Nelli, F.} (\textbf{2023}): \emph{{Python Data Analytics : With Pandas,
@@ -75,20 +53,16 @@
   : Data Mining Facebook, Twitter, LinkedIn, Instagram, GitHub, and More}}. 2.
   Auflage, O'Reilly Media, Sebastopol, Calif.
 
-\bibitem[{Schülers(2021)}]{article1}
-\textbf{Schülers} (\textbf{2021}): \emph{{Zeitschriftenartikel}}. {In:
-  Frankfurter Allgemeine Zeitung}, {Heft 20}, Jg. 10., {S. 10 -- 14}.
-
 \bibitem[{Steyer(2018)}]{Steyer:2018}
 \textbf{Steyer, R.} (\textbf{2018}): \emph{{Programmierung in Python: Ein
   kompakter Einstieg für die Praxis}}. 1. Auflage, Springer Nature, Wiesbaden.
 
+\bibitem[{Tylor(2023)}]{Taylor:2023}
+\textbf{Tylor, A.~G.} (\textbf{2023}): \emph{{SQL All-In-One for Dummies}}. 3.
+  Auflage, John Wiley and Sons, Incorporated.
+
 \bibitem[{VanderPlas(2023)}]{VanderPlas:2023}
 \textbf{VanderPlas, J.} (\textbf{2023}): \emph{{Python Data Science Handbook}}.
   2. Auflage, O'Reilly Media, Sebastopol, Calif.
-
-\bibitem[{{Wolfram Inc.}(2021)}]{Wolfram_alpha}
-\textbf{{Wolfram Inc.}} (\textbf{2021}): \emph{{Wolfram | Alpha}}. (URL:
-  \url{https://wolframalpha.com} [last access 10.06.2021]).
 
 \end{thebibliography}

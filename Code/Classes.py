@@ -173,7 +173,9 @@ class DB_Handling:
             self.Db_Connect()  
             engine = db.create_engine(self.databasePath)
             tableDF = pd.read_sql_table(self.dbTableName, engine, columns = None)
+            engine.dispose()
         except DBErrorHandling:
+            engine.dispose()
             print(DBErrorHandling().my_messageConError)
             
         return tableDF
