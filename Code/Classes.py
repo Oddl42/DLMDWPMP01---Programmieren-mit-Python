@@ -4,7 +4,7 @@
 ---------------------------------
 '''
 
-from Bibs import pd, np, sys, mysql, db, unittest
+from Bibs import pd, np, sys, mysql, db, unittest, sqlite3
 
 # Class Data
 class Data():
@@ -126,30 +126,33 @@ class DB_Handling:
     '''
     def __init__(self, dbName):
        self.dbName = dbName
-       self.databasePath = 'mysql+mysqlconnector://TestUser:MyT3st_SQL@localhost/' + self.dbName
+      # self.databasePath = 'mysql+mysqlconnector://TestUser:MyT3st_SQL@localhost/' 
+       self.databasePath = 'sqlite:///' + self.dbName
        
     def Db_Connect(self):
         try: 
-            my_db = mysql.connector.connect(host="localhost", user="TestUser", password="MyT3st_SQL") 
+            #my_db = mysql.connector.connect(host="localhost", user="TestUser", password="MyT3st_SQL") 
+            my_db = sqlite3.connect(self.dbName)
             my_cursor = my_db.cursor()
-            my_cursor.execute("SHOW DATABASES")
-            xInit = False
-            for dat in my_cursor:
-                if dat[0] == self.dbName:
-                    xInit = True
-                    break
-            try:
-                if not xInit:
-                    print(DBErrorHandling(self.dbName,self.dbTableName).my_message1)
-                    my_cursor = my_db.cursor()
-                    createDataBase = "CREATE DATABASE "  + self.dbName
-                    my_cursor.execute(createDataBase)
-                    print(DBErrorHandling(self.dbName,self.dbTableName).my_message3)                  
-            except DBErrorHandling:
-                print(DBErrorHandling(self.dbName,self.dbTableName).my_message4)
-            
+            #my_cursor.execute("SHOW DATABASES")
+            #xInit = False
+            #for dat in my_cursor:
+            #    if dat[0] == self.dbName:
+            #        xInit = True
+            #        break
+            #try:
+            #    if not xInit:
+            #        print(DBErrorHandling(self.dbName,self.dbTableName).my_message1)
+            #        my_cursor = my_db.cursor()
+            #        createDataBase = "CREATE DATABASE "  + self.dbName
+            #        my_cursor.execute(createDataBase)
+            #        print(DBErrorHandling(self.dbName,self.dbTableName).my_message3)                  
+            #except DBErrorHandling:
+            #    print(DBErrorHandling(self.dbName,self.dbTableName).my_message4)
+            my_db.close()
         except DBErrorHandling:
             print(DBErrorHandling(self.dbName,self.dbTableName).my_message5)
+        
             
     def Db_StoreTable(self, dbTableName, dataFrame:pd.DataFrame):
         self.dbTableName = dbTableName
@@ -157,7 +160,6 @@ class DB_Handling:
         try:
             self.Db_Connect()
             engine = db.create_engine(self.databasePath)
-            #metadata = MetaData(bind=engine)
             dataFrame.to_sql(dbTableName, con=engine, if_exists='replace', index = False)
             engine.dispose()
         except DBErrorHandling:

@@ -32,12 +32,12 @@ tab1    = 'tabelle_1_Trainings_Daten'      # Traning-Data
 tab2    = 'tabelle_2_Ideale_Funktionen'    # Ideal-Functions
 tab3    = 'tabelle_3_Test_Daten'           # Test-Data
 
-#DB = DB_Handling(dbName)
-#DB.Db_StoreTable(tab1, TrainData.df)
-#DB.Db_StoreTable(tab2, FcnsData.df)
-#DB.Db_StoreTable(tab3, SegmentationCheck)
+DB = DB_Handling(dbName)
+DB.Db_StoreTable(tab1, Train.df)
+DB.Db_StoreTable(tab2, Fcns.df)
+DB.Db_StoreTable(tab3, SegmentationCheck)
 
-#tst = DB.DB_GetTable(tab1)     # for testing
+tst = DB.DB_GetTable(tab3)     # Test: Getting Data from Database
 
 
 # Plotting Data

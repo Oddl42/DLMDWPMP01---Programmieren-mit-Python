@@ -13,6 +13,8 @@ Reallocating 'name_of_file' (item size: 1) to 28 items.
 A level-1 auxiliary file: 021-Python_Bibliotheken.aux
 Reallocating 'name_of_file' (item size: 1) to 26 items.
 A level-1 auxiliary file: 022-Database_Handling.aux
+Reallocating 'name_of_file' (item size: 1) to 12 items.
+A level-1 auxiliary file: 023-Git.aux
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 A level-1 auxiliary file: 090-Body.aux
 Reallocating 'name_of_file' (item size: 1) to 5 items.
@@ -21,44 +23,44 @@ Reallocating 'name_of_file' (item size: 1) to 7 items.
 Reallocating 'name_of_file' (item size: 1) to 15 items.
 A level-1 auxiliary file: 070-Pledge.aux
 Database file #1: biblio.bib
-You've used 19 entries,
+You've used 20 entries,
             2775 wiz_defined-function locations,
-            695 strings with 7124 characters,
-and the built_in function-call counts, 8760 in all, are:
-= -- 775
-> -- 239
-< -- 19
-+ -- 91
-- -- 73
-* -- 624
-:= -- 1403
-add.period$ -- 40
-call.type$ -- 19
-change.case$ -- 110
-chr.to.int$ -- 20
-cite$ -- 19
-duplicate$ -- 700
-empty$ -- 756
-format.name$ -- 105
-if$ -- 1826
+            701 strings with 7203 characters,
+and the built_in function-call counts, 9180 in all, are:
+= -- 810
+> -- 249
+< -- 20
++ -- 95
+- -- 76
+* -- 653
+:= -- 1473
+add.period$ -- 42
+call.type$ -- 20
+change.case$ -- 115
+chr.to.int$ -- 21
+cite$ -- 20
+duplicate$ -- 735
+empty$ -- 797
+format.name$ -- 109
+if$ -- 1914
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 130
-newline$ -- 61
-num.names$ -- 76
-pop$ -- 230
+missing$ -- 137
+newline$ -- 64
+num.names$ -- 80
+pop$ -- 242
 preamble$ -- 1
-purify$ -- 100
+purify$ -- 105
 quote$ -- 0
-skip$ -- 308
+skip$ -- 322
 stack$ -- 0
-substring$ -- 312
-swap$ -- 314
+substring$ -- 323
+swap$ -- 328
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 135
+type$ -- 141
 warning$ -- 0
-while$ -- 61
+while$ -- 64
 width$ -- 0
-write$ -- 210
+write$ -- 221

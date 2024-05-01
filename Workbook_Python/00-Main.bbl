@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 
 \bibitem[{Bokeh(2024)}]{Boekeh}
@@ -20,8 +20,8 @@
   Techniken für intelligente Systeme}}. 2. Auflage, O'Reilly Media,
   Sebastopol, Calif.
 
-\bibitem[{G.Tylor(2023)}]{Taylor:2023}
-\textbf{G.Tylor, A.} (\textbf{2023}): \emph{{SQL All-In-One for Dummies}}. 3.
+\bibitem[{Tylor(2023)}]{Taylor:2023}
+\textbf{Tylor, A. G.} (\textbf{2023}): \emph{{SQL All-In-One for Dummies}}. 3.
   Auflage, John Wiley and Sons, Incorporated.
 
 \bibitem[{Häberlein(2024)}]{Häberlein:2024}
@@ -37,6 +37,10 @@
 \bibitem[{Liebel(2019)}]{con:infra}
 \textbf{Liebel, O.} (\textbf{2019}): \emph{{Skalierbare
   Container-Infrastrukturen}}. 2. Auflage, Rheinwerk Verlag, Bonn.
+
+\bibitem[{Loeliger(2012)}]{Loeliger:2012}
+\textbf{Loeliger, J.} (\textbf{2012}): \emph{{Version control with Git}}. 2.
+  Auflage, O'Reilly Media, Sebastopol, Calif.
 
 \bibitem[{McKinney(2019)}]{McKinney:2023}
 \textbf{McKinney, W.} (\textbf{2019}): \emph{{Datenanlyse mit Python:

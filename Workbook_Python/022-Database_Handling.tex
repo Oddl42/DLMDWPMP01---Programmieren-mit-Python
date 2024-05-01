@@ -3,6 +3,31 @@
 Ein zentraler Bestandteil bei der Programmierung ist das arbeiten mit Daten und Dateien. Um mit großen und komplexen Datenmengen effizient und widerspruchsfrei zu arbeiten wird ein Verwaltungssystem benötigt. Dies führt zu Datenbankkonzepten wie SQL, \cite{Steyer:2018}.
 Dabei ist SQL (Structured Query Language) ein internationaler Standard zum arbeiten mit Daten, aber keine Universalsprache wie etwa \textit{Java} oder \textit{C}, \cite{Taylor:2023}. Es wurde entwickelt um mit Relationalen Datenbanken zu arbeiten, welche Daten in Tabellenform organisieren sowie Beziehungen zwischen Tabellen herstellen können.
 
-Python bietet Bibliotheken zum arbeiten mit SQL Datenbankkonzepten wie \textit{MySql}, \textit{SQLite}, ... an.
+Python bietet Bibliotheken zum arbeiten mit SQL Datenbankkonzepten wie \textit{MySql}, \textit{SQLite} und weitere an.
 
-Nachfolgend sind die wichtigsten schritte zum arbeiten mit Datenbanken aufgeführt
+Nachfolgend sind die wichtigsten schritte zum arbeiten einer SQLite - Datenbanken sowie der \textit{SQLAlchemy}- Bibliothek aufgeführt.
+\begin{itemize}
+	\itemsep0pt
+	\item Verbinden mit der Datenbank \textit{dbName} über \textit{conncet()}
+	\begin{lstlisting}
+my_db = sqlite3.connect(dbName)
+	\end{lstlisting}
+	\item Erstellen eines \textit{Engine}- Objekts mit dem Pfad zur Datenbank 
+	\begin{lstlisting}
+engine = db.create_engine(databasePath)
+	\end{lstlisting}
+	\item Speichern eines DataFrames in eine Datenbank
+	\begin{lstlisting}
+dataFrame.to_sql(dbTableName, con=engine, if_exists='replace', index = False)
+	\end{lstlisting}
+	\item Lesen von Daten aus der Datenbank und in einem DataFrame zur Verfügung stellen
+	\begin{lstlisting}
+tableDF = pd.read_sql_table(self.dbTableName, engine, columns = None)
+	\end{lstlisting}
+	\item Verbindung zur Datenbank beenden (um ressourcen zu schonen)
+	\begin{lstlisting}
+engine.dispose()
+my_db.close()
+	\end{lstlisting}
+	
+\end{itemize}
