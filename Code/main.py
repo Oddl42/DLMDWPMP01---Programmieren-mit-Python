@@ -23,8 +23,8 @@ Test    = TestData(dataPath + testFile)
 Fcns    = IdealFunctions(dataPath + fcnsFile)
 
 
-[idFcnsDf, mseDf] = Fcns.GetIdealFunctions(Train.df)    # Get Ideal Functions for Training-Data
-SegmentationCheck = Test.Segmentation(idFcnsDf)         # Check the Ideal-Functions for Test-Data
+[idFcnsDf, mseDf] = Fcns.GetIdealFunctions(Train.df)   # Get Ideal Functions for Training-Data 
+SegmentationCheck = Test.Segmentation(idFcnsDf)    # Check the Ideal-Functions for Test-Data     
 
 # Store Data to Databese
 dbName  = 'prg_python_database'
@@ -41,7 +41,8 @@ tst = DB.DB_GetTable(tab3)     # Test: Getting Data from Database
 
 
 # Plotting Data
-colors = palettes.brewer['Paired'][idFcnsDf.columns.shape[0]]          # Create Colors by brewer palette
+
+colors = palettes.brewer['Paired'][idFcnsDf.columns.shape[0]]    # Create Colors by brewer palette      
 
 ax = figure(width=500, height=500)
 i = 0
