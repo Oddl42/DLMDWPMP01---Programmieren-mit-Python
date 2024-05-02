@@ -1,7 +1,7 @@
 \chapter{Python Bibliotheken}
 
 Für Python gibt es Bibliotheken zum Laden von Daten, Visualisieren, Berechnen von Statistiken, Sprachverarbeitung, Bildverarbeitung usw. Dies gibt Data Scientists einen sehr umfangreichen Werkzeugkasten mit Funktionalität für allgemeine und besondere Einsatzgebiete, \cite{Mueller:2017}.
-Numpy ist das Modul der Wahl, wenn man wissenschaftlich rechnen möchte und wird insbesondere für statistische Auswertungen, für Machine-Learning und allgemein für sehr aufwändige Berechnungen eingesetzt. Auf Numpy setzt unter Anderem auch TensorFlow, pandas, scipy, scikit-learn auf, \cite{Häberlein:2024}.
+Numpy ist das Modul der Wahl, wenn man wissenschaftlich rechnen möchte und wird insbesondere für statistische Auswertungen, für Machine-Learning und allgemein für sehr aufwändige Berechnungen eingesetzt. Auf Numpy setzt unter anderem auch TensorFlow, pandas, scipy, scikit-learn auf, \cite{Häberlein:2024}.
 
 \section{Numpy}
 NumericalPython, kurz NumPy, bietet Datenstrukturen und Algorithmen speziell für wissenschaftliche Anwendungen, \cite{McKinney:2023}. Grund hierfür ist, dass die Berechnung bei großen Daten-Arrays besonders effizient ist und somit schneller als normaler Python Code sein kann, \cite{McKinney:2023}. \\
@@ -43,14 +43,10 @@ Viele weitere Bibliotheken wie Pandas bauen auf NumPy auf, \cite{VanderPlas:2023
  	self.df = pd.read_csv(datapath)
  \end{lstlisting}
  eine .csv Datei eingelesen und als DataFrame gespeichert. 
- Weitere nützliche Funktionen sind die \textit{df.sort} Funktion
- \begin{lstlisting}
- 	self.dfSortByX = self.df.sort_values(['x'])
- \end{lstlisting}
- welche das DataFrame anhand der x-Spalte sortiert.
+
  
  \section{Bokeh}
- Bokeh ist eine interaktive Datenvisualisierungsbibliothek für Python, die sich dadurch auszeichnet, umfassende interaktive Grafiken zu erstellen. Sie ist kompatibel mit Webtechnologien wie HTML, CSS und JavaScript und kann auf verschiedenen Plattformen wie Jupyter Notebook, JupyterLab, Flask und Django eingesetzt werden.
+ Bokeh ist eine interaktive Datenvisualisierungsbibliothek für Python, die sich dadurch auszeichnet, umfassende interaktive Grafiken zu erstellen. Sie ist kompatibel mit Webtechnologien wie HTML, CSS sowie JavaScript und kann auf verschiedenen Plattformen wie Jupyter Notebook, JupyterLab, Flask und Django eingesetzt werden.
  Sie bietet eine breite Palette von Diagrammtypen, darunter Linien-, Streu-, Balken-, Flächen-, Histogramme- und zahlreiche weitere Diagramme. Bokeh zeichnet sich durch seine Schnelligkeit bei der Arbeit mit großen Datensätzen aus und ermöglicht es Nutzern, Grafiken anzupassen und interaktiv zu betrachten. 
  
 Abbbildung \ref{fig:bokeh} dient beispielhaft für die Erstellung eines Plots mittels Bokeh. Diese wurde mit dem \textit{scatter}- Befehl erstellt und verarbeitet die \textit{x} und \textit{y} werte eines Pandas \textit{DataFrame}.

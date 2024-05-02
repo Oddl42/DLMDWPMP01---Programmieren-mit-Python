@@ -13,10 +13,10 @@ Die objektorientierte Programmierung hat seine Anfänge in den 1970er Jahren und
 	Ermöglicht, dass ein Bezeichner abhängig von seiner Verwendung Objekte unterschiedlichen Datentyps annimmt. Dies bedeutet, dass eine einzige Schnittstelle oder Methode verschiedene Implementierungen haben kann.
 \end{itemize}
 
-Objektorientierte Programmierung (OOP) ist somit ein Programmierparadigma, das auf dem Konzept von "Objekten" basiert, die Datenstrukturen enthalten und Verhaltensweisen (Methoden) definieren. Diese Objekte sind Instanzen von Klassen, die als Blaupausen für Objekte dienen. 
+Objektorientierte Programmierung (OOP) ist somit ein Programmierparadigma, dass auf dem Konzept von "Objekten" basiert die Datenstrukturen enthalten und Verhaltensweisen (Methoden) definieren. Diese Objekte sind Instanzen von Klassen, die als Blaupausen für Objekte dienen. 
 
 \section{Klassen}
-Eine Klasse ist eine Vorlage oder ein Bauplan für die Erstellung von Objekten. Sie definiert die Attribute und Methoden, die ein Objekt haben wird. Ein Attribut ist eine Eigenschaft oder ein Merkmal, das ein Objekt hat, während eine Methode eine Funktion ist, die ein Objekt ausführen kann, \cite{Steyer:2018}. Diese werden durch das Schlüsselwort \textit{class} definiert. 
+Eine Klasse ist eine Vorlage oder ein Bauplan für die Erstellung von Objekten. Sie definiert die Attribute und Methoden, die ein Objekt haben wird. Ein Attribut ist eine Eigenschaft oder ein Merkmal, das ein Objekt hat, während eine Methode eine Funktion ist, die ein Objekt ausführen kann, \cite{Steyer:2018}. Klassen werden durch das Schlüsselwort \textit{class} definiert. 
 
 \begin{lstlisting}[caption={class Data}, captionpos=b, label={lst:class data}]
 class Data():
@@ -33,28 +33,28 @@ class Data():
 \end{lstlisting}
 
 \section{Methoden und Vererbung}
-Die Klasse \textit{Data} hat eine Methode \textit{\_\_init\_\_}, welche den Parameter \textit{datapath} entgegen nimmt und versucht, eine CSV-Datei von diesem Pfad zu lesen und in ein DataFrame zu konvertieren. Wenn die Datei nicht gefunden wird, wird eine Fehlermeldung ausgegeben. Die Methode \textit{\_\_init\_\_} initialisiert auch andere Attribute der Klasse, wie df und \textit{dfSortByX}.
+Die Klasse \textit{Data} hat eine Methode \textit{\_\_init\_\_}, welche den Parameter \textit{datapath} entgegen nimmt und versucht, eine CSV-Datei von diesem Pfad zu lesen und in ein DataFrame zu konvertieren. Wird die Datei nicht gefunden, wird eine Fehlermeldung ausgegeben. Die Methode \textit{\_\_init\_\_} initialisiert auch andere Attribute der Klasse, wie df und \textit{dfSortByX}.
 
-Allgemein ist die \textit{\_\_init\_\_} Methode in Python ist eine spezielle Methode, die automatisch aufgerufen wird, wenn eine Instanz (ein Objekt) einer Klasse erstellt wird. Sie wird verwendet, um die Attribute der Klasse zu initialisieren. Die \textit{self} Variable repräsentiert die Instanz der Klasse und wird verwendet, um auf die Attribute und Methoden der Klasse zuzugreifen, \cite{Häberlein:2024}. \\
+Allgemein ist die \textit{\_\_init\_\_} Methode in Python ist eine spezielle Methode, die automatisch aufgerufen wird, wenn eine Instanz (ein Objekt) einer Klasse erstellt wird. Sie wird verwendet um die Attribute der Klasse zu initialisieren. Die \textit{self} Variable repräsentiert die Instanz der Klasse und wird verwendet um auf die Attribute und Methoden der Klasse zuzugreifen, \cite{Häberlein:2024}. \\
 
-Vererbung ist ein Prinzip der OOP, das es ermöglicht, eine neue Klasse zu erstellen, die die Attribute und Methoden einer bestehenden Klasse erbt. Die neue Klasse wird als "Unterklasse" oder "abgeleitete Klasse" bezeichnet, während die bestehende Klasse als "Oberklasse" oder "Basis-Klasse" bezeichnet wird, \cite{Steyer:2018}.
-Die Klasse \textit{IdealFunctions} erbt von Data und fügt die Methode \textit{IdealFunctionDf} hinzu, die eine ideale Funktion basierend auf einem Trainingsdatensatz berechnet. Diese Methode berechnet die kleinsten Fehler zwischen den Trainingsdaten und den Daten der Basisklasse und gibt die Indizes der idealen Funktionen zurück.
+Vererbung ist ein Prinzip der OOP, dass es ermöglicht eine neue Klasse zu erstellen, welche die Attribute und Methoden einer bestehenden Klasse erbt. Die neue Klasse wird als "Unterklasse" oder "abgeleitete Klasse" bezeichnet, während die bestehende Klasse als "Oberklasse" oder "Basis-Klasse" bezeichnet wird, \cite{Steyer:2018}.
+Die Klasse \textit{IdealFunctions} erbt von Data und fügt die Methode \textit{GetIdealFunctions} hinzu, die eine ideale Funktion basierend auf einem Trainingsdatensatz berechnet. Anhand des kleinsten Fehler zwischen den Trainingsdaten und den Daten der Basisklasse gibt die Methode die Indizes der idealen Funktionen zurück.
 
 \begin{lstlisting}[caption={class IdealFunctions}, captionpos=b, label={lst:class IdealFcns}]
 class IdealFunctions(Data):
   def __init__(self, datapath):
     Data.__init__(self, datapath)
-  def IdealFunctionDf(self, dfTrain:pd.DataFrame):
+  def GetIdealFunctions(self, dfTrain:pd.DataFrame):
     ...
 \end{lstlisting}
 
-Die Klasse \textit{TestData} erbt ebenfalls von Data und enthält die Methode \textit{VaildationFunktion}, die eine Validierungsfunktion für einen gegebenen Datensatz implementiert. Diese Methode filtert Datenpunkte basierend auf einem Schwellenwert \textit{threshold}, welche mit $\sqrt{2}$ initialisiert wird, und gibt ein gefiltertes Datenframe sowie eine tabellarische Darstellung zurück.
+Die Klasse \textit{TestData} erbt ebenfalls von Data und enthält die Methode \textit{Segmentation}, die eine Segmetierungsfunktion für einen gegebenen Datensatz implementiert. Diese Methode ordnet Datenpunkte basierend auf einem Schwellenwert \textit{threshold}, welche mit $\sqrt{2}$ initialisiert wird, einer Idealen Funktion zu.
 
 \begin{lstlisting}[caption={class TestData}, captionpos=b, label={lst:class IdealFcns}]
 class TestData(Data):
   def __init__(self, datapath):
     Data.__init__(self, datapath)
-  def VaildationFunktion(self, dataFrame:pd.DataFrame, threshold= np.sqrt(2))
+  def Segemtation(self, dataFrame:pd.DataFrame, threshold= np.sqrt(2))
     ...
 \end{lstlisting}
 

@@ -24,7 +24,7 @@ dataFrame.to_sql(dbTableName, con=engine, if_exists='replace', index = False)
 	\begin{lstlisting}
 tableDF = pd.read_sql_table(self.dbTableName, engine, columns = None)
 	\end{lstlisting}
-	\item Verbindung zur Datenbank beenden (um ressourcen zu schonen)
+	\item Verbindung zur Datenbank beenden (um Ressourcen zu schonen)
 	\begin{lstlisting}
 engine.dispose()
 my_db.close()
